@@ -10,10 +10,10 @@ import axios from 'axios';
 export default function RecipeItems() {
     const recipes = useLoaderData()
     const [allRecipes, setAllRecipes] = useState()
-    let path = window.location.pathname === "/myRecipe" ? true : false
+    let path = window.location.pathname === "/myRecipe"
     let favItems = JSON.parse(localStorage.getItem("fav")) ?? []
     const [isFavRecipe, setIsFavRecipe] = useState(false)
-    const navigate=useNavigate()
+    const navigate = useNavigate()
     console.log(allRecipes)
 
     useEffect(() => {
@@ -21,11 +21,14 @@ export default function RecipeItems() {
     }, [recipes])
 
     const onDelete = async (id) => {
-        await axios.delete(`http://localhost:5000/recipe/${id}`)
-            .then((res) => console.log(res))
-        setAllRecipes(recipes => recipes.filter(recipe => recipe._id !== id))
-        let filterItem = favItems.filter(recipe => recipe._id !== id)
-        localStorage.setItem("fav", JSON.stringify(filterItem))
+        try {
+            await axios.delete(`${process.env.REACT_APP_API_URL}/recipe/${id}`)
+            setAllRecipes(recipes => recipes.filter(recipe => recipe._id !== id))
+            let filterItem = favItems.filter(recipe => recipe._id !== id)
+            localStorage.setItem("fav", JSON.stringify(filterItem))
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     const favRecipe = (item) => {
@@ -41,8 +44,8 @@ export default function RecipeItems() {
                 {
                     allRecipes?.map((item, index) => {
                         return (
-                            <div key={index} className='card'onDoubleClick={()=>navigate(`/recipe/${item._id}`)}>
-                                <img src={`http://localhost:5000/images/${item.coverImage}`} width="120px" height="100px"></img>
+                            <div key={index} className='card' onDoubleClick={() => navigate(`/recipe/${item._id}`)}>
+                                <img src={`${process.env.REACT_APP_API_URL}/images/${item.coverImage}`} width="120px" height="100px" alt={item.title} />
                                 <div className='card-body'>
                                     <div className='title'>{item.title}</div>
                                     <div className='icons'>
