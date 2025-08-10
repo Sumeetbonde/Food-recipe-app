@@ -9,7 +9,7 @@ import EditRecipe from './pages/EditRecipe'
 import RecipeDetails from './pages/RecipeDetails'
 
 const API_URL = process.env.REACT_APP_API_URL
-require('dotenv').config()
+const dotenv = require('dotenv').config();
 
 const getAllRecipes = async () => {
   let allRecipes = []
