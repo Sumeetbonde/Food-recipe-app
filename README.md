@@ -1,6 +1,5 @@
 🍲 Recipe App (MERN Stack)
-A full-stack recipe management app built using MongoDB, Express.js, React.js, Node.js.
-Users can add, view, edit, delete, and search recipes with images.
+This is a recipe sharing web app where anyone can create an account, log in, and post their favorite recipes with pictures. You can browse all recipes, search for specific ones, and edit or delete your own posts. The app works on both mobile and desktop, making it easy to cook along anywhere. It’s built using the MERN stack (MongoDB, Express, React, Node) with secure login and image upload features
 
 🚀 Features
 🔐 User Sign up / Login (JWT Auth)
