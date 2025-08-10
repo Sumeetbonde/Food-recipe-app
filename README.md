@@ -22,7 +22,7 @@ bash
 Copy
 Edit
 # Clone repo
-git clone https://github.com/your-username/recipe-app.git
+git clone https://github.com/Sumeetbonde/Food-recipe-app.git
 cd recipe-app
 
 # Backend setup
